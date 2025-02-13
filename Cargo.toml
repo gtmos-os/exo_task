@@ -1,0 +1,15 @@
+[package]
+name = "exo_task"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+x86_64_support = ["x86_64"] # New feature flag
+
+[dependencies]
+x86_64 = { version = "0.15.2", optional = true }
+
+[dependencies.crossbeam-queue]
+version = "0.3.12"
+default-features = false
+features = ["alloc"]
