@@ -14,18 +14,18 @@ A lightweight async task executor for bare metal (or any) systems, supporting `n
 
 ## Usage
 
-Add this to your `Cargo.toml` **(once published)**:
+Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-exo_task = "0.1.0"
+exo_task = "0.1.1"
 ```
 
 For x86_64 platform support:
 
 ```toml
 [dependencies]
-exo_task = { version = "0.1.0", features = ["x86_64_support"] }
+exo_task = { version = "0.1.1", features = ["x86_64"] }
 ```
 
 ## Example

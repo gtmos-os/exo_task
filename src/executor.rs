@@ -87,7 +87,7 @@ impl Executor {
     /// When x86_64_support is enabled, uses CPU-specific sleep instructions.
     /// Otherwise it does nothing.
     fn sleep_if_idle(&self) {
-        #[cfg(feature = "x86_64_support")]
+        #[cfg(feature = "x86_64")]
         {
             use x86_64::instructions::interrupts::{self, enable_and_hlt};
     

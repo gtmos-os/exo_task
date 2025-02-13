@@ -1,6 +1,6 @@
 [package]
 name = "exo_task"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Samuel Hulme <https://github.com/ajh123>"]
 description = "A lightweight async task executor for bare metal (or any) systems"
@@ -11,9 +11,6 @@ keywords = ["async", "executor", "no_std", "embedded", "bare-metal"]
 categories = ["asynchronous", "no-std", "embedded"]
 readme = "README.md"
 rust-version = "1.86.0"
-
-[features]
-x86_64_support = ["x86_64"]
 
 [dependencies]
 x86_64 = { version = "0.15.2", optional = true }
