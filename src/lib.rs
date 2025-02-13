@@ -1,3 +1,5 @@
+#![cfg_attr(not(feature = "std"), no_std)]
+
 /*!
 # Introduction
 
@@ -10,11 +12,15 @@ This crate provides implementations for:
 
 The crate is `no_std` compatible and uses the `alloc` crate for heap allocations.
 
-# Feature flags
+# Features
 * **x86_64** -
   When enabled, this will cause `exo_task` to use the x86_64 specific features.
   Currently, enabling this feature will allow `Executor::sleep_if_idle` to disable
   interrupts and halt the CPU when there are no tasks to process.
+* **std** -
+  When enabled, this will cause `exo_task` to use the standard library.
+  This is enabled by default but can be disabled with `default-features = false,`
+  in your`Cargo.toml`.
 */
 
 extern crate alloc;

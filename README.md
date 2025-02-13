@@ -18,14 +18,14 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-exo_task = "0.1.1"
+exo_task = "0.1.2"
 ```
 
-For x86_64 platform support:
+For x86_64 platform support without `std`:
 
 ```toml
 [dependencies]
-exo_task = { version = "0.1.1", features = ["x86_64"] }
+exo_task = { version = "0.1.2", default-features = false, features = ["x86_64"] }
 ```
 
 ## Example
