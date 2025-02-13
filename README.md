@@ -11,6 +11,7 @@ A lightweight async task executor for bare metal (or any) systems, supporting `n
 - Configurable platform support (x86_64 feature flag)
 - Efficient task management with unique task IDs
 - Waker caching for better performance
+- Simple event system
 
 ## Usage
 
@@ -40,6 +41,56 @@ async fn example_task() {
 let mut executor = SimpleExecutor::new();
 executor.spawn(Task::new(example_task()));
 executor.run();
+```
+
+```rust
+use crate::{EventBus, EventListener};
+use alloc::string::String;
+
+// Define some example event types
+#[derive(Debug)]
+struct TaskCreatedEvent {
+    task_id: u32,
+    name: String,
+}
+
+#[derive(Debug)]
+struct TaskCompletedEvent {
+    task_id: u32,
+}
+
+// Example usage
+pub fn event_system_example() {
+    // Create an event bus
+    let mut event_bus = EventBus::new();
+
+    // Register listeners for different event types
+    let task_created_listener = EventListener::new(|event: &TaskCreatedEvent| {
+        println!("Task created: #{} - {}", event.task_id, event.name);
+    });
+
+    let task_completed_listener = EventListener::new(|event: &TaskCompletedEvent| {
+        println!("Task completed: #{}", event.task_id);
+    });
+
+    // Another listener for the same event type
+    let task_created_logger = EventListener::new(|event: &TaskCreatedEvent| {
+        println!("[LOG] New task created with ID: {}", event.task_id);
+    });
+
+    // Subscribe listeners to the event bus
+    event_bus.subscribe(task_created_listener);
+    event_bus.subscribe(task_created_logger);
+    event_bus.subscribe(task_completed_listener);
+
+    // Emit some events
+    event_bus.emit(TaskCreatedEvent {
+        task_id: 1,
+        name: String::from("Initialize system"),
+    });
+
+    event_bus.emit(TaskCompletedEvent { task_id: 1 });
+}
 ```
 
 ## Requirements

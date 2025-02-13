@@ -33,3 +33,6 @@ pub mod executor;
 
 /// Basic FIFO-based executor implementation for simple async operations
 pub mod simple_executor;
+
+/// Event bus for managing type-erased events and listeners
+pub mod events;
